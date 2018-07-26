@@ -1,8 +1,8 @@
-## Bookshop with React-Redux for Scotch
+## Bookshop with React-Redux-Router
 
-This demo backs a Scotch article and is intended to be used along with them demo.
+This is a simple bookstore application created using React, Reduc and React Router.
 
-Each part on the article has a respective branch and the master branch is the final example
+This demo backs a [Scotch article](https://scotch.io/tutorials/build-a-bookshop-with-react-redux-i-react-redux-flow) and is intended to be used along with them demo.
 
 Clone, install packages and run:
 

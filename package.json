@@ -1,5 +1,6 @@
 {
-  "name": "scotch-shop",
+  "name": "react-redux-bookshop",
+  "author": "Zain Pathan",
   "version": "0.1.0",
   "description": "",
   "engines": {
@@ -95,6 +96,6 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ZainPathan/react-redux-example.git"
   }
 }
