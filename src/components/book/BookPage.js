@@ -1,48 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import BookForm from './BookForm';
+import { Link } from 'react-router';
 import * as bookActions from '../../actions/bookActions';
 
 class Book extends React.Component {
     constructor(props) {
-        // Pass props back to parent
-        super(props);        
+        super(props);
     }
 
-    //Submit Book handler
     submitBook(input) {
-        alert('Submitted');
         this.props.createBook(input);
     }
 
     render() {
-        // Title input tracker
-        let titleInput;
-
-        //return JSX
+        // let titleInput;
         return (
-            <div>
-                <h3>Books</h3>
-                <ul>
-                    { /* Traverse books array */ }
-                    { this.props.books.map( (book, index) => <li key={index}>{book.title}</li> )}
-                </ul>
-                <div>
-                    <h3>Books Form</h3>
-                    <form onSubmit={ e => {
-                        //Prevent default request
-                        e.preventDefault();
-                        //Assemble inputs
-                        var input = { 
-                            title: titleInput.value
-                        };
-                        //Call handler
-                        this.submitBook(input);
-                        //Reset form
-                        e.target.reset();
-                    }}>
-                        <input type="text" name="title" ref={node => titleInput = node}/>
-                        <input type="submit" />
-                    </form>
+            <div className="row">
+                <div className="col-md-6">
+                    <h3>Books</h3>
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <td>Title</td>
+                                    <td></td>
+                                </th>
+                            </tr>                            
+                        </thead>
+                        <tbody>
+                            {this.props.books.map( (book, index) => (
+                                <tr key={index}>
+                                    <td>{book.title}</td>
+                                    <td><Link to={`/book/${book.id}`}>View</Link></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="col-md-6">
+                    <h3>New Book</h3>
+                    { /* Import and inject Book Form*/ }
+                    <BookForm submitBook={this.submitBook.bind(this)} />
                 </div>
             </div>
         );
@@ -54,7 +53,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         //We can now use this.props.books
         books: state.books
-    }
+    };
 };
 
 //Map action to props
@@ -62,10 +61,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         //We can now use this.props.createBook
         createBook: (book) => dispatch(bookActions.createBook(book))
-    }
+    };
 };
 
 //Use connect to put them together
 export default connect(mapStateToProps, mapDispatchToProps)(Book);
-
-//export default Book;

@@ -1,6 +1,6 @@
 {
   "name": "react-redux-bookshop",
-  "author": "Zain Pathan",
+  "author": "Christian Nwamba",
   "version": "0.1.0",
   "description": "",
   "engines": {
@@ -27,7 +27,6 @@
     "test:watch": "npm run test -- --watch",
     "open:cover": "npm run test:cover && open coverage/index.html"
   },
-  "author": "Christian Nwamba",
   "license": "MIT",
   "dependencies": {
     "axios": "0.14.0",
