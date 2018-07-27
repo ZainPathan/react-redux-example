@@ -13,6 +13,7 @@ export const booksReducer = (state = [], action) => {
       ];
     */
     case actionTypes.FETCH_BOOKS_SUCCESS:
+      console.log('FETCH_BOOKS_SUCCESS of booksReducer called ', actionTypes.FETCH_BOOKS_SUCCESS);
       return action.books;
 
     case actionTypes.CREATE_BOOK_SUCCESS: 
@@ -32,7 +33,13 @@ export const bookReducer = (state = [], action) => {
     // Handle fetch by Id
     case actionTypes.FETCH_BOOK_BY_ID_SUCCESS:
       return action.book;
-
+    /* added to check which reducer is called - ToBeRemoved */
+    case actionTypes.FETCH_BOOKS_SUCCESS:
+      console.log('FETCH_BOOKS_SUCCESS of bookReducer called ', actionTypes.FETCH_BOOKS_SUCCESS);
+      console.log('action.books : ', action.books);
+      return action.books;
+      // return state;
+    /* added to check which reducer is called - ToBeRemoved */
     default: 
       return state;
   }
