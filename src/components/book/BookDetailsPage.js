@@ -13,11 +13,19 @@ class BookDetailsPage extends React.Component {
         this.props.fetchBookById(this.props.params.id);
     }
 
+    addToCart(book) {
+        const item = {
+            title: book.title,
+            price: book.price
+        };
+        this.props.addToCart(item);
+    }
+
     render() {
         return (
             <div>
                 <h1>Book Details Page</h1>
-                <BookDetails book={this.props.book}/>
+                <BookDetails book={this.props.book} addToCart={this.addToCart.bind(this)}/>
             </div>
         );
     }
@@ -38,7 +46,8 @@ const mapDispatchToProps = (dispatch) => {
          * AJAX request we setup in 
          * our actions
          */
-        fetchBookById: (bookId) => dispatch(bookActions.fetchBookById(bookId))
+        fetchBookById: (bookId) => dispatch(bookActions.fetchBookById(bookId)),
+        addToCart: (item) => dispatch(bookActions.addToCart(item))
     };
 };
 

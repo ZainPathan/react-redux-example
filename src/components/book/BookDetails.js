@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookDetails = ({book}) => {
+const BookDetails = ({book, addToCart}) => {
     return (
         <div className="media">
             <div className="media-left">
@@ -19,7 +19,11 @@ const BookDetails = ({book}) => {
                     <li><strong>Price: </strong> {book.price}</li>
                     <li><strong>Year: </strong> {book.year}</li>
                     <br />
-                    <button className="btn btn-primary">Buy</button>
+                    {/* onClick event */}
+                    <button 
+                        className="btn btn-primary"
+                        onClick={e => addToCart(book)}
+                    >Buy</button>
                 </ul>
             </div>
         </div>
