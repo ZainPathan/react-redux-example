@@ -35,6 +35,7 @@ export const createBook = (book) => {
     return Axios.post(apiUrl, book)
       .then(response => {
         // Dispatch a synchronous action to handle data
+        dispatch(createBookSuccess(response.data));
       })
       .catch( error => {
         throw(error);
