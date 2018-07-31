@@ -6,7 +6,7 @@ export default ( state=[], action) => {
             return action.item;
         case actionTypes.FETCH_CART_SUCCESS:
             return action.items;
-        case actionTypes.DELETE_CART_ITEM_SUCCESS:
+        case actionTypes.DELETE_CART_ITEM_SUCCESS: {
             /*
             const newState = Object.assign([], state);
             console.log('newState : ', newState);
@@ -23,6 +23,7 @@ export default ( state=[], action) => {
             console.log('newState : ', newState);
             console.log('newState == state : '+(newState == state));
             return newState;
+        }
         default:
             return state;
     }
