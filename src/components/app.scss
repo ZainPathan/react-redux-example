@@ -2,3 +2,25 @@ body{
   //background: red;
 }
 
+.table {
+  tr {
+    th {
+      border-top: 1px solid black;
+      background-color: none;
+    }
+    border-bottom: 1px solid black;
+    .cart-delete-link {
+      cursor: pointer;
+      &:hover {
+        font-weight: bold;
+      }
+    }
+  }  
+  tr:nth-child(odd) {
+    background-color: lightgrey
+  }
+  tr:hover {
+    background-color: lightgreen;
+  }
+}
+

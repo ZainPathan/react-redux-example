@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as bookActions from '../../actions/bookActions';
+// import * as bookActions from '../../actions/bookActions';
+import * as cartActions from '../../actions/cartActions';
 
 class CartPage extends React.Component {
     constructor(props, context) {
@@ -11,6 +12,11 @@ class CartPage extends React.Component {
         this.props.fetchCart();
     }
 
+    deleteCartItem(item) {
+        console.log('item : ', item);
+        this.props.deleteCartItem(item.id);
+    }
+
     render() {
         return (
             <div>
@@ -19,12 +25,14 @@ class CartPage extends React.Component {
                     <tr>
                         <th>Title</th>
                         <th>Price</th>
+                        <th>Actions</th>
                     </tr>
-                    { this.props.items.map( (item, index) => {
+                    { this.props.items !== undefined && this.props.items.length > 0 && this.props.items.map( (item, index) => {
                         return (
                             <tr key={index}>
                                 <td>{item.title}</td>
                                 <td>{item.price}</td>
+                                <td className="cart-delete-link" onClick={this.deleteCartItem.bind(this, item)}>Delete</td>
                             </tr>
                         );
                     })}
@@ -42,7 +50,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchCart: (bookId) => dispatch(bookActions.fetchCart(bookId))
+        fetchCart: () => dispatch(cartActions.fetchCart()),
+        deleteCartItem: (cartItemId) => dispatch(cartActions.deleteCartItem(cartItemId))
     };
 };
 

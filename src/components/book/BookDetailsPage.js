@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BookDetails from './BookDetails';
 import * as bookActions from '../../actions/bookActions';
+import * as cartActions from '../../actions/cartActions';
 
 class BookDetailsPage extends React.Component {
     constructor(props, context) {
@@ -47,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
          * our actions
          */
         fetchBookById: (bookId) => dispatch(bookActions.fetchBookById(bookId)),
-        addToCart: (item) => dispatch(bookActions.addToCart(item))
+        addToCart: (item) => dispatch(cartActions.addToCart(item))
     };
 };
 
