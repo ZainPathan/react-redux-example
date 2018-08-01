@@ -67,6 +67,23 @@ export const deleteCartItemSuccess = (deletedCartItem) => {
 };
 
 export const clearCart = (cartItems) => {
+  return dispatch => {
+    let promises = [];
+    cartItems.forEach(function(cartItem) {
+      promises.push(Axios.delete('http://5b59a227f294400014c9b826.mockapi.io/api/v1/cart/'+cartItem.id));
+    });
+
+    Axios.all(promises).then((results) => {
+      dispatch(clearCartSuccess(results));
+    })
+    .catch( error => {
+      throw(error);
+    });
+  };
+};
+
+// Making REST DELETE API calls in a loop
+/* export const clearCart = (cartItems) => {
   console.log('Clear Cart fn called : ', cartItems);
   return dispatch => {
     let responseData = [];
@@ -84,7 +101,7 @@ export const clearCart = (cartItems) => {
         });
     });
   };
-};
+}; */
 
 export const clearCartSuccess = (responseData) => {
   return {
