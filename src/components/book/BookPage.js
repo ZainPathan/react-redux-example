@@ -7,10 +7,15 @@ import * as bookActions from '../../actions/bookActions';
 class Book extends React.Component {
     constructor(props) {
         super(props);
+        // this.deleteBook.bind(this);
     }
 
     submitBook(input) {
         this.props.createBook(input);
+    }
+
+    deleteBook(bookId) {
+        this.props.deleteBook(bookId);
     }
 
     render() {
@@ -19,12 +24,12 @@ class Book extends React.Component {
             <div className="row">
                 <div className="col-md-6">
                     <h3>Books</h3>
-                    <table className="table">
+                    <table className="table books-table">
                         <thead>
                             <tr>
                                 <th>
                                     <td>Title</td>
-                                    <td></td>
+                                    <td>Actions</td>
                                 </th>
                             </tr>                            
                         </thead>
@@ -32,7 +37,11 @@ class Book extends React.Component {
                             {this.props.books.map( (book, index) => (
                                 <tr key={index}>
                                     <td>{book.title}</td>
-                                    <td><Link to={`/book/${book.id}`}>View</Link></td>
+                                    <td>
+                                        <Link to={`/book/${book.id}`}>View</Link>
+                                        &nbsp;
+                                        <a onClick={this.deleteBook.bind(this, book.id)}>Delete</a>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -60,7 +69,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         //We can now use this.props.createBook
-        createBook: (book) => dispatch(bookActions.createBook(book))
+        createBook: (book) => dispatch(bookActions.createBook(book)),
+        deleteBook: (bookId) => dispatch(bookActions.deleteBook(bookId))
     };
 };
 

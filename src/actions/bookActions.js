@@ -72,6 +72,25 @@ export const fetchBookById = (bookId) => {
   };
 };
 
+export const deleteBook = (bookId) => {
+  return (dispatch) => {
+    return Axios.delete(apiUrl + '/' + bookId)
+      .then(response => {
+        dispatch(deleteBookSuccess(response.data));
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
+};
+
+export const deleteBookSuccess = (bookItem) => {
+  return {
+    type: actionTypes.DELETE_BOOK_SUCCESS,
+    payload: bookItem
+  };
+}
+
 /*
 export const createBook = (book) => {
   //return action

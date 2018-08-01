@@ -21,7 +21,14 @@ export const booksReducer = (state = [], action) => {
         ...state,
         Object.assign({}, action.book)
       ];
-
+    case actionTypes.DELETE_BOOK_SUCCESS: {
+      const newState = Object.assign([], state);
+      return newState.filter(function(bookItem) {
+        return bookItem.id !== action.payload.id;
+      });
+      // console.log('new State : ', newState);
+      // return newState;
+    }
     default: 
       return state;
   }
@@ -40,7 +47,7 @@ export const bookReducer = (state = [], action) => {
       return action.books;
       // return state;
     /* added to check which reducer is called - ToBeRemoved */
-    default: 
+    default:
       return state;
   }
 };
