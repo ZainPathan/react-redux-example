@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import * as bookActions from '../../actions/bookActions';
 import * as cartActions from '../../actions/cartActions';
+import { CLEAR_CART } from '../../actions/actionTypes';
 
 class CartPage extends React.Component {
     constructor(props, context) {
@@ -17,10 +18,18 @@ class CartPage extends React.Component {
         this.props.deleteCartItem(item.id);
     }
 
+    clearCart() {
+        console.log('Clear Cart method called');
+        this.props.clearCart(this.props.items);
+    }
+
     render() {
         return (
             <div>
                 <h1>Cart Page</h1>
+                <br/>
+                <button onClick={this.clearCart.bind(this)}>Clear Cart</button>
+                <br/>
                 <table className="table">
                     <tr>
                         <th>Title</th>
@@ -51,7 +60,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchCart: () => dispatch(cartActions.fetchCart()),
-        deleteCartItem: (cartItemId) => dispatch(cartActions.deleteCartItem(cartItemId))
+        deleteCartItem: (cartItemId) => dispatch(cartActions.deleteCartItem(cartItemId)),
+        clearCart: (cartItems) => dispatch(cartActions.clearCart(cartItems))
     };
 };
 

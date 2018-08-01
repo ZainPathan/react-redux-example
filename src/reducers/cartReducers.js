@@ -24,6 +24,10 @@ export default ( state=[], action) => {
             console.log('newState == state : '+(newState == state));
             return newState;
         }
+        case actionTypes.CLEAR_CART_SUCCESS: {
+            console.log(actionTypes.CLEAR_CART_SUCCESS + ' : '+state);
+            return [];
+        }
         default:
             return state;
     }

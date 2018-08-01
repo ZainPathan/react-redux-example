@@ -65,3 +65,30 @@ export const deleteCartItemSuccess = (deletedCartItem) => {
         payload: deletedCartItem
     };
 };
+
+export const clearCart = (cartItems) => {
+  console.log('Clear Cart fn called : ', cartItems);
+  return dispatch => {
+    let responseData = [];
+    cartItems.forEach(cartItem => {
+      Axios.delete('http://5b59a227f294400014c9b826.mockapi.io/api/v1/cart/'+cartItem.id)
+        .then(response => {
+          responseData.push(response.data);
+          if( responseData.length == cartItems.length ) {
+            console.log('All Cart Items deleted');
+            dispatch(clearCartSuccess(responseData));
+          }
+        })
+        .catch(error => {
+          throw(error);
+        });
+    });
+  };
+};
+
+export const clearCartSuccess = (responseData) => {
+  return {
+    type: actionTypes.CLEAR_CART_SUCCESS,
+    payload: responseData
+  };
+};
